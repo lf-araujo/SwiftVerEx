@@ -25,7 +25,7 @@ public struct VerbalExpressions {
     public var regularExpression: NSRegularExpression! {
         return try! NSRegularExpression(pattern: pattern, options: options)
     }
-    
+
     // initializers
     public init() {
         self.init(prefixes: "", source: "", suffixes: "", options: .anchorsMatchLines)
