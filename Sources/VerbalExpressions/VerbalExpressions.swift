@@ -196,7 +196,7 @@ public struct VerbalExpressions {
 
 }
 
-fileprivate extension VerbalExpressions {
+extension VerbalExpressions {
     func setting(prefixes: String? = nil, source: String? = nil, suffixes: String? = nil, options: NSRegularExpression.Options? = nil) -> VerbalExpressions {
         guard prefixes != self.prefixes || source != self.source || suffixes != self.suffixes || options != self.options else {
             return self
