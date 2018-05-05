@@ -85,7 +85,7 @@ public struct VerbalExpressions {
         return or(exp.source);
     }
 
-    public func anything() -> VerbalExpressions {
+    public func anything() -> VerbalExpressions {   
         return adding("(?:.*)")
     }
 
@@ -268,23 +268,6 @@ fileprivate extension NSRegularExpression.Options {
         default:
             self = []
         }
-    }
-}
-
-//Return found substrings
-extension VerbalExpressions {
-    func resultsFromString(string: String) -> [String] {
-        let range = NSRange(location: 0, length: string.utf16.count)
-        let results = regularExpression.matchesInString(string, options: [], range: range)
-        var strings: [String] = []
-        for result in results {
-            guard result.range.location != NSNotFound else { continue }
-            autoreleasepool {
-                let string = (string as NSString).substringWithRange(result.range)
-                strings.append(string)
-            }
-        }
-        return strings
     }
 }
 
