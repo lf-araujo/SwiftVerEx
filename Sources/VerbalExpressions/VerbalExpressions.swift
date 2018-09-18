@@ -23,8 +23,7 @@ public struct VerbalExpressions {
     public var pattern: String { return  prefixes + source + suffixes }
 
     public var regularExpression: NSRegularExpression {
-        let escapedpattern = NSRegularExpression.escapedPattern(for: pattern)
-        return try! NSRegularExpression(pattern: escapedpattern, options: options)
+        return try! NSRegularExpression(pattern: pattern, options: options)
     }
 
     // initializers
