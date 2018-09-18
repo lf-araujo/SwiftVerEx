@@ -20,7 +20,7 @@ public struct VerbalExpressions {
     fileprivate let options: NSRegularExpression.Options
 
     // computed properties
-    public var pattern: String { return  prefixes + source + suffixes }
+    public var pattern: String { return NSRegularExpression.escapedPattern(for: prefixes + source + suffixes) }
 
     public var regularExpression: NSRegularExpression {
         return try! NSRegularExpression(pattern: pattern, options: options)
