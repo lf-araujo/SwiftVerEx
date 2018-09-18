@@ -23,21 +23,22 @@ public struct VerbalExpressions {
     public var pattern: String { return prefixes + source + suffixes }
 
     public var regularExpression: NSRegularExpression! {
-        return try! NSRegularExpression(pattern: pattern, options: options)
+        guard try? NSRegularExpression(pattern: pattern, options: options) else { print("Error in expression \(error)")}
+        // return try! NSRegularExpression(pattern: pattern, options: options)
     }
 
     // initializers
     public init() {
         self.init(prefixes: "", source: "", suffixes: "", options: .anchorsMatchLines)
     }
-    
+
     fileprivate init(prefixes: String, source: String, suffixes: String, options: NSRegularExpression.Options) {
         self.prefixes = prefixes
         self.source = source
         self.suffixes = suffixes
         self.options = options
     }
-    
+
     // instance methods
     public func startOfLine(enabled: Bool = true) -> VerbalExpressions {
         return setting(prefixes: enabled ? "^" : "")
@@ -82,10 +83,10 @@ public struct VerbalExpressions {
     }
 
     public func or(_ exp: VerbalExpressions) -> VerbalExpressions {
-        return or(exp.source);
+        return or(exp.source)
     }
 
-    public func anything() -> VerbalExpressions {   
+    public func anything() -> VerbalExpressions {
         return adding("(?:.*)")
     }
 
@@ -146,8 +147,7 @@ public struct VerbalExpressions {
     public func withAnyCase(enabled: Bool = true) -> VerbalExpressions {
         if enabled {
             return adding(modifier: "i")
-        }
-        else {
+        } else {
             return removing(modifier: "i")
         }
     }
@@ -155,8 +155,7 @@ public struct VerbalExpressions {
     public func searchOneLine(enabled: Bool = true) -> VerbalExpressions {
         if enabled {
             return removing(modifier: "m")
-        }
-        else {
+        } else {
             return adding(modifier: "m")
         }
     }
