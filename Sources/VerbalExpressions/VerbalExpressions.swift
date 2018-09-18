@@ -20,11 +20,10 @@ public struct VerbalExpressions {
     fileprivate let options: NSRegularExpression.Options
 
     // computed properties
-    public var pattern: String { return prefixes + source + suffixes }
+    public var pattern: String { return NSRegularExpression.escapedPattern(for: prefixes + source + suffixes) }
 
-    public var regularExpression: NSRegularExpression! {
-        guard try? NSRegularExpression(pattern: pattern, options: options) else { print("Error in expression \(error)")}
-        // return try! NSRegularExpression(pattern: pattern, options: options)
+    public var regularExpression: NSRegularExpression {
+        return try! NSRegularExpression(pattern: pattern, options: options)
     }
 
     // initializers
@@ -200,7 +199,7 @@ extension VerbalExpressions {
         guard prefixes != self.prefixes || source != self.source || suffixes != self.suffixes || options != self.options else {
             return self
         }
-        
+
         return VerbalExpressions(
             prefixes: prefixes ?? self.prefixes,
             source: source ?? self.source,
@@ -208,7 +207,7 @@ extension VerbalExpressions {
             options: options ?? self.options
         )
     }
-    
+
     func adding(_ string: String) -> VerbalExpressions {
         return setting(source: source + string)
     }
@@ -290,4 +289,3 @@ public func !~(lhs: String, rhs: VerbalExpressions) -> Bool {
 public func !~(lhs: VerbalExpressions, rhs: String) -> Bool {
     return !(lhs =~ rhs)
 }
-
