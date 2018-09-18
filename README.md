@@ -45,7 +45,7 @@ else {
     print("The URL is incorrect")
 }
 
-prin(tester) // Outputs the actual expression used: "^(?:http)(?:s)?(?::\/\/)(?:www)?(?:[^ ]*)$"
+print(tester) // Outputs the actual expression used: "^(?:http)(?:s)?(?::\/\/)(?:www)?(?:[^ ]*)$"
 ```
 
 ### Replacing strings
