@@ -169,18 +169,18 @@ public struct VerbalExpressions {
             .adding(")")
     }
 
-/*     public func replace(_ string: String, template: String) -> String {
+    public func replace(_ string: String, template: String) -> String {
         let range = NSRange(location: 0, length: string.utf16.count)
 
         return regularExpression.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: template)
-    } */
+    }
 
-    public func replace(_ string: String, with: String) -> String {
+/*     public func replace(_ string: String, with: String) -> String {
         let range = NSRange(location: 0, length: string.utf16.count)
         let template = NSRegularExpression.escapedTemplate(for: with)
 
         return regularExpression.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: template)
-    }
+    } */
 
     public func test(_ string: String) -> Bool {
         let range = NSRange(location: 0, length: string.utf16.count)
